@@ -117,9 +117,8 @@ Filip Boshevski
 ---
 ---
 
-[new_game_screen]: http://igoimpeks.com/projects/sudoku/StartPanel_view.png "Слика 1"
-[resetiraj]: http://igoimpeks.com/projects/sudoku/HighScores_panel.png "Слика 2"
-[State]: http://igoimpeks.com/projects/sudoku/enter_HS.png "Слика 3"
-[Hanger]: http://igoimpeks.com/projects/sudoku/standard.png "Слика 4"
-
-
+[new_game_screen]: https://raw.githubusercontent.com/filipboshevski/besilka/master/Sliki/start_screen.png "Слика 1"
+[resetiraj]: https://raw.githubusercontent.com/filipboshevski/besilka/master/Sliki/resetiraj.png "Слика 2"
+[pomos_izbor]: https://raw.githubusercontent.com/filipboshevski/besilka/master/Sliki/pomos_izbor.png "Слика 3"
+[State]: https://raw.githubusercontent.com/filipboshevski/besilka/master/Sliki/State.png "Слика 4"
+[Hanger]: https://raw.githubusercontent.com/filipboshevski/besilka/master/Sliki/Hanger.png "Слика 5"
