@@ -222,6 +222,8 @@ namespace Besilka.Models
         private void ResetStartButton()
         {
             Window.btnStartStop.Text = "Започни";
+            Window.btnHelp.Visible = false;
+            Window.btnHelp.Enabled = false;
 
             var menuItem = Window.menuStrip1.Items[0] as ToolStripDropDownItem;
             menuItem.DropDownItems[0].Visible = true;
