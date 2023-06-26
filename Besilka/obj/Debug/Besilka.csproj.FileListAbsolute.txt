@@ -1,0 +1,12 @@
+C:\Users\filipboshevski\source\repos\Besilka\Besilka\bin\Debug\Besilka.exe.config
+C:\Users\filipboshevski\source\repos\Besilka\Besilka\bin\Debug\Besilka.exe
+C:\Users\filipboshevski\source\repos\Besilka\Besilka\bin\Debug\Besilka.pdb
+C:\Users\filipboshevski\source\repos\Besilka\Besilka\obj\Debug\Besilka.csproj.AssemblyReference.cache
+C:\Users\filipboshevski\source\repos\Besilka\Besilka\obj\Debug\Besilka.csproj.SuggestedBindingRedirects.cache
+C:\Users\filipboshevski\source\repos\Besilka\Besilka\obj\Debug\Besilka.Properties.Resources.resources
+C:\Users\filipboshevski\source\repos\Besilka\Besilka\obj\Debug\Besilka.csproj.GenerateResource.cache
+C:\Users\filipboshevski\source\repos\Besilka\Besilka\obj\Debug\Besilka.csproj.CoreCompileInputs.cache
+C:\Users\filipboshevski\source\repos\Besilka\Besilka\obj\Debug\Besilka.exe
+C:\Users\filipboshevski\source\repos\Besilka\Besilka\obj\Debug\Besilka.pdb
+C:\Users\filipboshevski\source\repos\Besilka\Besilka\obj\Debug\Besilka.Besilka.resources
+C:\Users\filipboshevski\source\repos\Besilka\Besilka\bin\Debug\Words.txt
