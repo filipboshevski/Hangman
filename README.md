@@ -1,205 +1,218 @@
-**Бесилка**
+# Hangman Game (WinForms .NET C#)
 
-Windows Forms Project by: 
-Filip Boshevski
+## Overview
 
----
-1. Опис на апликацијата
-	
-	Апликацијата што ја развив е класичната игра Бесилка.
+Welcome to **Hangman**, a classic word-guessing game developed using WinForms and .NET C# by Filip Boshevski. Challenge your vocabulary and enjoy a visually appealing interface while playing Hangman.
 
-	Со цел да се обезбеди комплетно задоволство кај играчот, имплементирани се и помошни избори кои им покажуваат на играчот одреден број на букви во зборот.
+## 1. Features
 
-2. Упатство за користењe
+1. **Intuitive Interface:**
+   - A user-friendly graphical interface built with WinForms.
+   - Seamless navigation for an immersive gaming experience.
 
-	2.1 Нова игра
+2. **Word Diversity:**
+   - Randomly selected words from a diverse word bank for varied gameplay.
 
-	![alt text][new_game_screen]
+3. **User Feedback:**
+   - Dynamic updates on guessed letters, providing instant feedback.
+   - Track your progress and celebrate victories.
 
-	На почетниот прозорец (слика 1) при стартување на апликацијата имаме можност да започнеме нова игра **(Започни)**.
-	После секој успешно погоден збор, на екранот излегува прозорче кое го известува играчот дека победи со што има можност да започне нова игра.
+4. **Customization Options:**
+   - Adjustable difficulty levels.
+   - Set custom word categories for a personalized challenge.
 
-	2.2 Ресетирај
+5. **Winning Streaks:**
+   - Keep track of your winning streaks.
+   - Challenge friends and see who achieves the longest streak.
 
-	![alt text][resetiraj]
+6. **Codebase Clarity:**
+   - Well-documented C# code for educational purposes.
+   - Explore and learn about WinForms development.
 
-	Со помош на оваа фунцкионалност, играчот во секој момент од играта може да ја ресетира со што излегува прозорче кое го известува за постоечката игра и потврдува дека сака вистина да ја ресетира играта.
+## 2. Getting Started
 
-	2.3 Помош избор
+1. **New Game:**
+   - Click **Start** in the initial window to begin a new game.
+   - After a successful guess, a popup appears, allowing you to start a new game.
+  
+  ![alt text][new_game_screen]
 
-	![alt text][pomos_izbor]
+2. **Reset:**
+   - Use the **Reset** option to reset the game at any point.
+   - A confirmation popup ensures you want to reset the game.
 
-	Доколку корисникот има потешкотии во годењето на зборот, може со помош на копчето **(Помош избор)** да открие една рандом буква од зборот.
-	Вкупниот број на помошни избори е 2.
+  ![alt text][resetiraj]
 
-	2.4 Правила
-	Правилата се едноставни:
+3. **Help Option:**
+   - Press **Help Option** to reveal a random letter in the word.
+   - Limited to 2 help options.
 
-	* Зборот треба да се погоди пред да се нацрта целото човече на бесилката.
-	* Бројот на грешни избори е 6, односно, 1 за главата, 1 за телото, 1 за секоја рака и 1 за секоја нога.
-	* Бројот на помошни избори е 2, со што играчот може да открие една од буквите во зборот.
-* Откако една точна или грешна буква се избере таа не може повторно да се избере.
+  ![alt text][pomos_izbor]
 
-3. Претставување на проблемот
+4. **Rules:**
+   - Guess the word before the entire hangman is drawn.
+   - 6 incorrect choices allowed (1 for head, 1 for body, 1 for each arm, 1 for each leg).
+   - 2 help options available to reveal letters.
+   - No repeating letter selections.
 
-	3.1 Податочни структури
+## 3. Solving the problem
 
-	Главните податоци и [функции](#3.2-) за играта се чуваат во класа ```public class Scene``` во која се чува состојбата на играта во објект од класата ```public class State``` и состојбата за бесилката во објект од класата ```public class Hanger```.
+### 3.1 Data structures
 
-	```c#
-	public class Scene
+The main logic and methods for the game are stored in ```public class Scene``` which stores the game's state in an instance of ```public class State``` and the hanger's state in an instance of ```public class Hanger```.
+
+```c#
+public class Scene
+{
+	private State State { get; set; }
+
+	private Besilka Window { get; set; }
+
+	private Pen HangerPen { get; set; }
+
+	private Pen RopePen { get; set; }
+
+	private Hanger Hanger { get; set; }
+
+	private static string Words = "Бесилка,Здраво,Филтер,Мајмун,Јаже,Кајмак,Сирење,Стол,Лепило,Плоча,Картон,Ножица,Стакло,Компјутер,Ризик,Полнач";
+
+	public Scene(Besilka window)
 	{
-		private State State { get; set; }
-
-        private Besilka Window { get; set; }
-
-        private Pen HangerPen { get; set; }
-
-        private Pen RopePen { get; set; }
-
-        private Hanger Hanger { get; set; }
-
-        private static string Words = "Бесилка,Здраво,Филтер,Мајмун,Јаже,Кајмак,Сирење,Стол,Лепило,Плоча,Картон,Ножица,Стакло,Компјутер,Ризик,Полнач";
-
-        public Scene(Besilka window)
-        {
-            Window = window;
-            State = new State();
-            
-            InitializeVars();
-            AddButtons();
-        }
-
-		//Implementacijata na metodite mozhete da ja najdete vo izvorniot kod na klasata
-
-        private void InitializeVars() {}
-
-        public void StartGame() {}
-
-		private void SelectWord() {}
-
-		private void AddLabels() {}
-
-		private void ResetControls() {}
-
-		private void onBtnClick(object sender, EventArgs e) {}
-
-		private void FillChar(char charClicked) {}
-
-		public void GetHelp() {}
-
-		private void ResetStartButton() {}
-
-		private void AddButtons() {}
-
-		public void Draw(Graphics g) {}
+	    Window = window;
+	    State = new State();
+	    
+	    InitializeVars();
+	    AddButtons();
 	}
-	```
 
-	3.1.1 State
-	```c#
-		public class State
-		{
-			public State()
-			{
-				Letters = new List<Label>();
-				HangState = HangState.None;
-				HelpLeft = 2;
-			}
+	// Method implementations can be found in the actual code
 
-			public List<Label> Letters { get; set; }
+	private void InitializeVars() {}
+	
+	public void StartGame() {}
 
-			public string Word { get; set; }
+	private void SelectWord() {}
 
-			public string EmptyChar => "__";
+	private void AddLabels() {}
 
-			public HangState HangState { get; set; }
+	private void ResetControls() {}
 
-			public int InitialChoicesLeft => Enum.GetValues(typeof(HangState)).Length - 1;
+	private void onBtnClick(object sender, EventArgs e) {}
 
-			public int HelpLeft { get; set; }
-		}
-	```
-	Со оваа класа ја дефинираме состојбата на играта.
+	private void FillChar(char charClicked) {}
 
-	3.1.2 Hanger
-	```c#
-		public class Hanger
-		{
-			public Hanger()
-			{
-				HangerPoints = new Dictionary<string, Point>();
-			}
+	public void GetHelp() {}
 
-			public Dictionary<string, Point> HangerPoints { get; set; }
+	private void ResetStartButton() {}
 
-			public Point Rope { get; set; }
+	private void AddButtons() {}
 
-			public Point Body { get; set; }
+	public void Draw(Graphics g) {}
+}
+```
 
-			public Point Head { get; set; }
+### 3.1.1 State
+```c#
+public class State
+{
+	public State()
+	{
+		Letters = new List<Label>();
+		HangState = HangState.None;
+		HelpLeft = 2;
+	}
 
-			public Point LeftArm { get; set; }
+	public List<Label> Letters { get; set; }
 
-			public Point RightArm { get; set; }
+	public string Word { get; set; }
 
-			public Point LeftLeg { get; set; }
+	public string EmptyChar => "__";
 
-			public Point RightLeg { get; set; }
+	public HangState HangState { get; set; }
 
-			public static int HeadDiameter = 40;
+	public int InitialChoicesLeft => Enum.GetValues(typeof(HangState)).Length - 1;
 
-			public static int BodyHeight = 85;
+	public int HelpLeft { get; set; }
+}
+```
+With this class we define the game's state.
 
-			public static int RopeLength = 40;
+### 3.1.2 Hanger
+```c#
+public class Hanger
+{
+	public Hanger()
+	{
+		HangerPoints = new Dictionary<string, Point>();
+	}
 
-			public static Point ArmOffset = new Point(30, 50);
+	public Dictionary<string, Point> HangerPoints { get; set; }
 
-			public static Point LegOffset = new Point(40, 40);
-		}
-	```
-	Со оваа класа ја дефинираме состојбата и клучни податоци за бесилката во играта.
+	public Point Rope { get; set; }
 
-	3.2 Алгоритми
+	public Point Body { get; set; }
 
-	За да биде различна играта секој пат, имплементирано е рандом генерирање на збор од листа на зборови или текст фајл.
+	public Point Head { get; set; }
 
-	3.2.1 Почетна состојба
-		`StartGame();`
-		Со повикување на оваа метода прво се проверува дали веќе постои игра во тек, со што се прикажува прозорче за потврдување на нова игра. 
+	public Point LeftArm { get; set; }
 
-		Потоа се ресетира состојбата на контролите, се одбира рандом збор од листата и се поставуваат цртичките во играта.
+	public Point RightArm { get; set; }
 
-	3.2.2 Кликање на буква
-		`onBtnClick();`
-		На секое копче-буква се додава Event Handler методата onBtnClick која ја зема буквата на прицнатото копче и проверува дали постои во зборот. 
+	public Point LeftLeg { get; set; }
 
-		Доколку постои, ги наоѓа сите инстанци во цртичките и ги заменува со буквата. 
+	public Point RightLeg { get; set; }
 
-		Во спротивно, ја зголемува состојбата на бесилката за 1, со што кога ќе стигне до десната нога, играта завршува и се прикажува прозорче со порака.
+	public static int HeadDiameter = 40;
 
-		`FillChar();`
-		Оваа метода го прави заменувањето на сите цртички во зборот кои што ја содржат избраната буква. 
+	public static int BodyHeight = 85;
 
-		Доколку сите цртички се пополнети, играта завршува и се прикажува прозорче со порака.
-			
-	3.2.3 Помош избор
-		`GetHelp();`
-		Со притискање на копчето **(Помош избор)** или мени опцијата **(Помош избор)**, се повикува оваа метода која открива една рандом буква во зборот и ги заменува сите цртички со таа буква.
+	public static int RopeLength = 40;
 
-		Со секое притискање на копчето се намалува бројот на помош избори.
+	public static Point ArmOffset = new Point(30, 50);
 
-	3.2.3 Цртање на бесилката
-		`Draw();`
-		Со помош на оваа метода, на екранот се црта бесилката каскадно.
+	public static Point LegOffset = new Point(40, 40);
+}
+```
+With this class, we define the hanger's state and configurations.
 
-		Прво се иницијализираат сите променливи потребни за цртањето, потоа за секој дел од човечето се проверува индивидуално според состојбата на бесилката и се исцртува истиот.
-	3.3 GUI
+### 3.2 Algorithms
 
-	За претставување на бесилката искористена е panel контрола со исцртување на компонентите според нејзините димензии како offset.
+In order to have different combinations each game, random word generation is used from a list of words or a text file.
 
----
----
+### 3.2.1 Start state
+`StartGame();`
+Calling this method first checks if there is already a game in progress, thus displaying a new game confirmation window.
+
+After resetting the controls, a random word is selected from the list and the dashes are placed in the game.
+
+### 3.2.2 On letter click
+`onBtnClick();`
+For each letter button, the onBtnClick event handler is added. This method takes the letter of the clicked button and checks if it exists in the word.
+
+If the letter is present, it finds all instances in the blanks and replaces them with the chosen letter.
+
+Otherwise, it increments the hangman state by 1. When it reaches the right leg, the game ends, and a popup with a message is displayed.
+
+`FillChar();`
+This method performs the replacement of all blanks in the word containing the selected letter.
+
+If all blanks are filled, the game ends, and a popup with a message is displayed.
+		
+### 3.2.3 Help option
+`GetHelp();`
+With the click of **(Помош избор)** or the menu option **(Помош избор)**, the above method is called which replaces one dash in the word with a letter.
+
+With each help, the number of help options is decreased by 1.
+
+### 3.2.3 Hanger drawing
+`Draw();`
+With the help of this method, the hanger is displayed in cascade.
+
+First, all the variables needed for the drawing are initialized, then for each part of the person it's checked individually according to the hanger's state and drawn.
+### 3.3 GUI
+
+A panel control was used to represent the hanger by drawing the components according to its dimensions as an offset.
+
 
 [new_game_screen]: https://raw.githubusercontent.com/filipboshevski/besilka/master/Sliki/start_screen.png "Слика 1"
 [resetiraj]: https://raw.githubusercontent.com/filipboshevski/besilka/master/Sliki/resetiraj.png "Слика 2"
